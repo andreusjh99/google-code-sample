@@ -18,8 +18,9 @@ def test_create_existing_playlist(capfd):
     lines = out.splitlines()
     assert len(lines) == 2
     assert "Successfully created new playlist: my_cool_playlist" in lines[0]
-    assert ("Cannot create playlist: A playlist with the same name already "
-            "exists") in lines[1]
+    assert (
+        "Cannot create playlist: A playlist with the same name already " "exists"
+    ) in lines[1]
 
 
 def test_add_to_playlist(capfd):
@@ -153,7 +154,10 @@ def test_remove_from_playlist(capfd):
     assert "Successfully created new playlist: my_cool_playlist" in lines[0]
     assert "Added video to my_cool_playlist: Amazing Cats" in lines[1]
     assert "Removed video from my_COOL_playlist: Amazing Cats" in lines[2]
-    assert "Cannot remove video from my_cool_playlist: Video is not in playlist" in lines[3]
+    assert (
+        "Cannot remove video from my_cool_playlist: Video is not in playlist"
+        in lines[3]
+    )
 
 
 def test_remove_from_playlist_video_is_not_in_playlist(capfd):
@@ -164,7 +168,10 @@ def test_remove_from_playlist_video_is_not_in_playlist(capfd):
     lines = out.splitlines()
     assert len(lines) == 2
     assert "Successfully created new playlist: my_cool_playlist" in lines[0]
-    assert "Cannot remove video from my_cool_playlist: Video is not in playlist" in lines[1]
+    assert (
+        "Cannot remove video from my_cool_playlist: Video is not in playlist"
+        in lines[1]
+    )
 
 
 def test_remove_from_playlist_nonexistent_video(capfd):
@@ -186,7 +193,9 @@ def test_remove_from_playlist_nonexistent_playlist(capfd):
     out, err = capfd.readouterr()
     lines = out.splitlines()
     assert len(lines) == 1
-    assert "Cannot remove video from my_cool_playlist: Playlist does not exist" in lines[0]
+    assert (
+        "Cannot remove video from my_cool_playlist: Playlist does not exist" in lines[0]
+    )
 
 
 def test_clear_playlist(capfd):
@@ -234,4 +243,7 @@ def test_delete_playlist_nonexistent(capfd):
     out, err = capfd.readouterr()
     lines = out.splitlines()
     assert len(lines) == 1
-    assert "Cannot delete playlist my_cool_playlist: Playlist does not exist" in lines[0]
+    assert (
+        "Cannot delete playlist my_cool_playlist: Playlist does not exist" in lines[0]
+    )
+
