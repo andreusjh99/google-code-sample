@@ -18,8 +18,7 @@ class VideoLibrary:
         """The VideoLibrary class is initialized."""
         self._videos = {}
         with open(Path(__file__).parent / "videos.txt") as video_file:
-            reader = _csv_reader_with_strip(
-                csv.reader(video_file, delimiter="|"))
+            reader = _csv_reader_with_strip(csv.reader(video_file, delimiter="|"))
             for video_info in reader:
                 title, url, tags = video_info
                 self._videos[url] = Video(

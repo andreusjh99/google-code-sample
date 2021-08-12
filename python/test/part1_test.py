@@ -106,7 +106,8 @@ def test_play_random_video(capfd):
     assert len(lines) == 1
     assert re.match(
         "Playing video: (Amazing Cats|Another Cat Video|Funny Dogs|Life at Google|Video about nothing)",
-        out)
+        out,
+    )
 
 
 def test_play_random_stops_previous_video(capfd):
@@ -120,7 +121,8 @@ def test_play_random_stops_previous_video(capfd):
     assert "Stopping video: Amazing Cats" in lines[1]
     assert re.match(
         "Playing video: (Amazing Cats|Another Cat Video|Funny Dogs|Life at Google|Video about nothing)",
-        lines[2])
+        lines[2],
+    )
 
 
 def test_show_playing(capfd):
@@ -131,7 +133,10 @@ def test_show_playing(capfd):
     lines = out.splitlines()
     assert len(lines) == 2
     assert "Playing video: Amazing Cats" in lines[0]
-    assert "Currently playing: Amazing Cats (amazing_cats_video_id) [#cat #animal]" in lines[1]
+    assert (
+        "Currently playing: Amazing Cats (amazing_cats_video_id) [#cat #animal]"
+        in lines[1]
+    )
 
 
 def test_show_nothing_playing(capfd):
@@ -162,8 +167,10 @@ def test_pause_video_show_playing(capfd):
     out, err = capfd.readouterr()
     lines = out.splitlines()
     assert len(lines) == 3
-    assert "Currently playing: Amazing Cats (amazing_cats_video_id) " \
-           "[#cat #animal] - PAUSED" in lines[2]
+    assert (
+        "Currently playing: Amazing Cats (amazing_cats_video_id) "
+        "[#cat #animal] - PAUSED" in lines[2]
+    )
 
 
 def test_pause_video_play_video(capfd):
@@ -179,8 +186,10 @@ def test_pause_video_play_video(capfd):
     assert "Pausing video: Amazing Cats" in lines[1]
     assert "Stopping video: Amazing Cats" in lines[2]
     assert "Playing video: Amazing Cats" in lines[3]
-    assert "Currently playing: Amazing Cats (amazing_cats_video_id) " \
-           "[#cat #animal]" in lines[4]
+    assert (
+        "Currently playing: Amazing Cats (amazing_cats_video_id) "
+        "[#cat #animal]" in lines[4]
+    )
     assert "PAUSED" not in lines[4]
 
 
